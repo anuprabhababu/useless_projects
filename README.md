@@ -85,15 +85,20 @@ Core Features
  * Overthinking meter
 * Final score and  report
 
-# Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+# Screenshots 
+<img width="1647" height="803" alt="Screenshot 2026-09-13 160000" src="https://github.com/user-attachments/assets/838dc017-3137-457b-bdcc-e3fea0e8e308" />
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+Screenshot2
+<img width="1760" height="877" alt="Screenshot 2026-09-13 160221" src="https://github.com/user-attachments/assets/f028779c-6d38-44eb-a582-7dd3be94e3cd" />
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+<img width="1132" height="872" alt="Screenshot 2026-09-13 160621" src="https://github.com/user-attachments/assets/bff638c5-f340-45c4-8d6a-e76f17fce9d1" />
+
+<img width="965" height="831" alt="Screenshot 2026-09-13 161430" src="https://github.com/user-attachments/assets/b7585f1d-4e6d-4dde-9a07-fe3d2c72d689" />
+
+
+<img width="1723" height="851" alt="Screenshot 2026-09-13 160033" src="https://github.com/user-attachments/assets/806f577b-a936-4649-9ca8-3c5142378316" />
+
+
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
