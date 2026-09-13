@@ -238,7 +238,6 @@ const worsen = async () => {
 
     if (data) {
       setEvidenceText('')
-      setPage('game')
     }
   }
 

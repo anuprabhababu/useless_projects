@@ -1,443 +1,580 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Patrick+Hand&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Patrick+Hand&display=swap");
+:root {
+    --navy: #061425;
+    --navy-soft: #0c1d35;
+    --purple: #252457;
+    --panel: rgba(20, 29, 59, 0.82);
+    --panel-light: rgba(255, 255, 255, 0.08);
+    --white: #f9f8ff;
+    --muted: #b8c0d8;
+    --pink: #fa72b6;
+    --pink-dark: #d64591;
+    --pink-soft: #ffb9df;
+    --green: #69e5a4;
+    --yellow: #ffd55d;
+    --orange: #ff9d65;
+    --red: #ff7a8a;
+    --violet: #c297ff;
+}
+
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body {
+    min-width: 320px;
     margin: 0;
-    font-family: 'DM Sans', sans-serif;
-    color: #101522;
-    background: #0c1929
+    color: var(--white);
+    font-family: "DM Sans", sans-serif;
+    background: var(--navy);
 }
 
 button,
 input,
 textarea {
-    font: inherit
+    font: inherit;
 }
 
 button {
-    cursor: pointer
+    cursor: pointer;
 }
 
+
+/* Shared dark background for all pages */
+
 .hero,
-.loading {
+.loading,
+.app-page {
     min-height: 100vh;
-    color: white;
-    background: radial-gradient(circle at 50% 45%, #313269 0, #151b3a 35%, #091524 75%);
-    overflow: hidden
+    background: radial-gradient(circle at 50% 42%, rgba(100, 76, 180, 0.45), transparent 30%), radial-gradient(circle at 12% 84%, rgba(249, 103, 184, 0.12), transparent 26%), radial-gradient(circle at 90% 16%, rgba(87, 128, 229, 0.13), transparent 25%), linear-gradient(140deg, #061425 0%, #101c3b 55%, #071727 100%);
 }
+
+
+/* ---------- NAVIGATION ---------- */
 
 .hero nav,
 .loading nav,
 .app-page nav {
-    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 76px;
     padding: 0 6vw;
-    font-size: 12px
+    color: var(--white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(5, 16, 31, 0.3);
 }
 
 .hero nav b,
 .loading nav b,
 .app-page nav b {
-    font-size: 20px
+    font-size: 24px;
+    font-weight: 800;
 }
 
-.hero sup,
-.loading sup,
-.app-page sup {
-    font-size: 9px
+.hero nav span,
+.app-page nav span {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.back,
+.nav-home {
+    padding: 6px;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    border: 0;
+    background: transparent;
+}
+
+.back:hover,
+.nav-home:hover {
+    color: var(--pink-soft);
+}
+
+sup {
+    font-size: 9px;
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+.button {
+    min-width: 220px;
+    padding: 15px 29px;
+    font-size: 16px;
+    font-weight: 800;
+    border: 0;
+    border-radius: 30px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-3px);
+}
+
+.button.dark {
+    color: var(--white);
+    background: #071526;
+    box-shadow: 0 5px 0 #020712;
+}
+
+.button.pink {
+    color: #1c1231;
+    background: linear-gradient(100deg, #ff8fc7, #f75eaa);
+    box-shadow: 0 5px 0 #c83b80;
+}
+
+.button.outline {
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+}
+
+
+/* ---------- LANDING PAGE ---------- */
+
+.hero {
+    overflow: hidden;
 }
 
 .hero-copy {
+    max-width: 750px;
+    margin: 58px auto 0;
+    padding: 0 20px 35px;
     text-align: center;
-    max-width: 700px;
-    margin: 40px auto
 }
 
 .eyebrow {
+    color: #f3a0cb;
+    font-size: 12px;
+    font-weight: 700;
     letter-spacing: 2px;
-    color: #f8a9d2;
-    font-size: 11px
 }
 
 .hero h1 {
-    font: 800 92px 'Patrick Hand', cursive;
-    line-height: .7;
-    margin: 40px 0 12px;
-    text-shadow: 3px 3px #ff93c6
+    margin: 43px 0 10px;
+    color: #fffafc;
+    font-family: "Patrick Hand", cursive;
+    font-size: clamp(74px, 11vw, 115px);
+    line-height: 0.85;
+    text-shadow: 4px 5px 0 var(--pink);
 }
 
 .hero h1 span {
-    font-size: 20px
+    font-size: 18px;
+    vertical-align: top;
 }
 
-.hero h2,
-.input-page h1,
-.score-page h1,
-.evidence-page h1 {
-    font-family: 'Patrick Hand';
-    font-size: 29px;
-    line-height: 1.2
+.hero h2 {
+    margin: 18px 0;
+    color: var(--white);
+    font-family: "Patrick Hand", cursive;
+    font-size: 28px;
+    line-height: 1.15;
 }
 
 .brain {
-    height: 210px;
-    font-size: 105px;
     position: relative;
-    margin: 12px
+    height: 235px;
+    margin: 3px auto 20px;
+    font-size: 112px;
+    filter: drop-shadow(0 9px 10px rgba(0, 0, 0, 0.3));
 }
 
 .brain i,
 .brain em,
 .brain small {
-    font: 600 18px 'Patrick Hand';
-    font-style: normal;
     position: absolute;
+    padding: 11px 17px;
+    color: #132037;
+    font-family: "Patrick Hand", cursive;
+    font-size: 18px;
+    font-style: normal;
+    border-radius: 28px;
     background: white;
-    color: #172034;
-    padding: 11px 18px;
-    border-radius: 25px;
-    box-shadow: 0 4px 12px #0005
+    box-shadow: 0 6px 13px rgba(0, 0, 0, 0.25);
 }
 
 .brain i {
-    left: 3%;
-    top: 20px
+    top: 24px;
+    left: 2%;
 }
 
 .brain em {
+    top: 20px;
     right: 0;
-    top: 20px
 }
 
 .brain small {
     right: 4%;
-    bottom: 18px
-}
-
-.button {
-    border: 0;
-    border-radius: 28px;
-    padding: 15px 30px;
-    font-weight: 800;
-    font-size: 16px;
-    min-width: 220px
-}
-
-.dark {
-    color: #fff;
-    background: #111e30
-}
-
-.pink {
-    background: #fa7eba;
-    color: #1a1721;
-    box-shadow: inset 0 -2px #d55298
-}
-
-.outline {
-    background: white;
-    border: 1px solid #182238;
-    color: #182238;
-    margin-top: 12px
+    bottom: 15px;
 }
 
 .disclaimer {
-    font-size: 11px;
-    margin-top: 28px
+    color: var(--white);
+    font-size: 12px;
 }
 
-.app-page {
-    min-height: 100vh;
-    background: #f9f7f5
-}
 
-.app-page nav {
-    height: 62px;
-    background: white;
-    color: #0d1420;
-    border-bottom: 1px solid #dedede
-}
-
-.back {
-    border: 0;
-    background: transparent;
-    color: #111
-}
+/* ---------- INPUT PAGE ---------- */
 
 .input-page,
 .evidence-page,
 .score-page {
-    max-width: 620px;
-    margin: 22px auto;
-    padding: 10px 24px;
-    text-align: center
+    width: min(650px, calc(100% - 34px));
+    margin: 38px auto;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 24px;
+    background: rgba(13, 26, 52, 0.67);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(13px);
+}
+
+.input-page h1,
+.evidence-page h1,
+.score-page h1 {
+    margin: 0 0 12px;
+    color: var(--white);
+    font-family: "Patrick Hand", cursive;
+    font-size: 35px;
+    text-align: center;
 }
 
 .input-page textarea {
     width: 100%;
-    height: 110px;
-    border: 1px solid #d5d7df;
-    border-radius: 12px;
-    padding: 14px;
-    resize: none
+    height: 130px;
+    padding: 15px;
+    color: var(--white);
+    resize: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.input-page textarea::placeholder,
+.evidence-input input::placeholder {
+    color: #acb5cc;
+}
+
+.input-page textarea:focus,
+.evidence-input input:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 3px rgba(250, 114, 182, 0.17);
 }
 
 .input-page>small {
     display: block;
+    color: var(--muted);
+    font-size: 11px;
     text-align: right;
-    color: #596273
 }
 
 .input-page p,
 .evidence-page>p {
+    color: var(--muted);
     font-size: 13px;
-    text-align: left
+}
+
+.input-page h3 {
+    margin: 24px 0 10px;
+    color: var(--white);
+    font-size: 15px;
 }
 
 .examples {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px
+    gap: 9px;
 }
 
 .examples button {
-    border: 0;
-    background: #eef2ff;
-    color: #2d3e72;
-    border-radius: 8px;
-    padding: 11px;
-    font-size: 12px
+    padding: 10px;
+    color: #e4e9ff;
+    font-size: 12px;
+    border: 1px solid rgba(147, 177, 255, 0.2);
+    border-radius: 10px;
+    background: rgba(113, 148, 231, 0.15);
 }
 
-.input-page h3 {
-    text-align: left;
-    font-size: 14px;
-    margin-top: 22px
+.examples button:hover {
+    border-color: #99b7ff;
+    background: rgba(113, 148, 231, 0.3);
 }
 
 .modes {
     display: flex;
     gap: 10px;
-    margin: 8px 0 22px
+    margin-bottom: 22px;
 }
 
 .mode-card {
     flex: 1;
-    border: 1px solid #ddd;
-    background: #fff;
-    border-radius: 10px;
+    min-height: 104px;
     padding: 9px 4px;
-    font-size: 11px
+    color: var(--white);
+    font-size: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.mode-card:nth-child(2) {
+    background: rgba(255, 208, 93, 0.1);
+}
+
+.mode-card:nth-child(3) {
+    background: rgba(255, 119, 176, 0.13);
+}
+
+.mode-card:nth-child(4) {
+    background: rgba(178, 127, 255, 0.13);
 }
 
 .mode-card.selected {
-    border: 2px solid #82cfa8;
-    background: #e7ffec
+    color: #061425;
+    border: 2px solid #9cf1bd;
+    background: #b8f9cd;
+    box-shadow: 0 7px 20px rgba(112, 235, 159, 0.2);
 }
 
 .mode-icon {
-    font-size: 24px;
-    display: block
+    display: block;
+    margin-bottom: 5px;
+    font-size: 27px;
 }
 
+
+/* ---------- LOADING PAGE ---------- */
+
 .loading {
-    text-align: center
+    color: var(--white);
+    text-align: center;
 }
 
 .loading>div {
-    margin: 28px auto;
-    max-width: 620px
+    max-width: 650px;
+    margin: 45px auto;
 }
 
 .loading h2 {
-    font: 28px 'Patrick Hand'
+    font-family: "Patrick Hand", cursive;
+    font-size: 32px;
 }
 
 .sticky-grid {
     display: flex;
-    gap: 18px;
-    justify-content: center;
     align-items: center;
-    height: 170px
+    justify-content: center;
+    gap: 18px;
+    height: 165px;
 }
 
 .sticky-grid span {
     width: 130px;
-    padding: 18px 8px;
-    color: #152234;
-    background: #ffe88e;
+    padding: 18px 9px;
+    color: #1b2540;
+    font-family: "Patrick Hand", cursive;
+    font-size: 17px;
+    background: #ffe984;
+    box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.35);
     transform: rotate(-8deg);
-    font: 17px 'Patrick Hand';
-    box-shadow: 2px 5px 12px #0006
 }
 
 .sticky-grid span:nth-child(2) {
-    background: #f9f48a;
-    transform: rotate(5deg)
+    background: #fff797;
+    transform: rotate(5deg);
 }
 
 .sticky-grid span:nth-child(3) {
-    background: #bdefff;
-    transform: rotate(10deg)
+    background: #bcecff;
+    transform: rotate(10deg);
 }
 
 .loading-brain {
-    font-size: 100px
+    font-size: 108px;
 }
 
 .meter {
     height: 18px;
+    overflow: hidden;
     border-radius: 20px;
-    background: #d3d9e1;
-    overflow: hidden
+    background: rgba(225, 233, 250, 0.22);
 }
 
 .meter i {
     display: block;
+    width: 73%;
     height: 100%;
-    background: linear-gradient(90deg, #fb8cc1, #ff589b);
     border-radius: 20px;
-    width: 73%
+    background: linear-gradient(90deg, #ff8dc2, #fb55a2);
 }
 
 .loading .meter {
-    width: 360px;
-    margin: 15px auto
+    width: min(365px, calc(100% - 38px));
+    margin: 16px auto;
 }
 
+
+/* ---------- GAME PAGE ---------- */
+
 .game {
-    max-width: 1050px;
-    margin: 25px auto;
     display: grid;
-    grid-template-columns: 1.25fr .75fr;
+    grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
     gap: 30px;
-    padding: 0 25px
+    width: min(1060px, calc(100% - 38px));
+    margin: 30px auto;
 }
 
 .situation-box {
-    background: #fff;
-    border: 1px solid #e6e3e4;
-    border-radius: 12px;
-    padding: 13px;
     display: grid;
-    gap: 6px
+    gap: 6px;
+    padding: 15px;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    background: var(--panel);
 }
 
 .situation-box small {
-    color: #687080
+    color: var(--muted);
 }
 
 .timeline {
-    padding: 16px 8px 5px;
-    border-left: 3px solid #f193bb;
-    margin: 0 0 10px 17px
+    margin: 15px 0 12px 18px;
+    padding: 8px 8px 5px;
+    border-left: 3px solid #73dca2;
 }
 
 .stage-card {
     position: relative;
-    background: white;
-    border-radius: 12px;
-    padding: 13px;
-    margin: 0 0 10px 20px;
     display: flex;
     gap: 13px;
-    opacity: .5;
-    border: 1px solid #f0eeee
+    margin: 0 0 11px 20px;
+    padding: 14px;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 14px;
+    background: rgba(81, 175, 119, 0.16);
+    opacity: 1;
 }
 
-.stage-card.active {
-    opacity: 1;
-    box-shadow: 0 5px 14px #20102718
+.stage-card:nth-child(2) {
+    background: rgba(247, 184, 48, 0.14);
+}
+
+.stage-card:nth-child(3) {
+    background: rgba(255, 113, 76, 0.15);
+}
+
+.stage-card:nth-child(4) {
+    background: rgba(244, 74, 141, 0.15);
+}
+
+.stage-card:nth-child(5) {
+    background: rgba(160, 86, 255, 0.18);
 }
 
 .stage-card strong {
-    color: #209252
+    color: var(--green);
 }
 
 .stage-card:nth-child(2) strong {
-    color: #c18200
+    color: var(--yellow);
 }
 
 .stage-card:nth-child(3) strong {
-    color: #e3453a
+    color: var(--orange);
 }
 
 .stage-card:nth-child(4) strong {
-    color: #db3377
+    color: #ff83b6;
 }
 
 .stage-card:nth-child(5) strong {
-    color: #702bbe
+    color: var(--violet);
 }
 
 .stage-card p {
+    margin: 4px 0 0;
+    color: #edf0ff;
     font-size: 13px;
-    margin: 4px 0 0
 }
 
 .level-dot {
     position: absolute;
     left: -37px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
     display: grid;
-    place-items: center;
+    width: 30px;
+    height: 30px;
     color: white;
-    background: #38b96d;
-    font-weight: bold
+    font-weight: 800;
+    place-items: center;
+    border-radius: 50%;
+    background: #2db669;
 }
 
 .stage-card:nth-child(2) .level-dot {
-    background: #ffb928
+    background: #f2ad1f;
 }
 
 .stage-card:nth-child(3) .level-dot {
-    background: #f15438
+    background: #ef613b;
 }
 
 .stage-card:nth-child(4) .level-dot {
-    background: #e8417b
+    background: #eb4d86;
 }
 
 .stage-card:nth-child(5) .level-dot {
-    background: #7623c3
+    background: #8136c5;
 }
 
 .worse {
     display: block;
-    margin: 12px auto
-}
-
-.score-card {
-    background: #172538;
-    border-radius: 13px;
-    padding: 18px;
-    color: #fff;
-    margin-bottom: 20px
-}
-
-.score-card>span {
-    font-size: 10px;
-    letter-spacing: 1px
-}
-
-.score-card .meter {
-    margin: 8px 0
-}
-
-.score-card strong {
-    font-size: 12px
+    margin: 18px auto;
 }
 
 .game aside h3 {
-    font-family: 'Patrick Hand';
-    font-size: 25px;
-    margin: 17px 0 8px
+    margin: 18px 0 9px;
+    color: var(--white);
+    font-family: "Patrick Hand", cursive;
+    font-size: 29px;
+}
+
+.score-card {
+    padding: 18px;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 15px;
+    background: linear-gradient(135deg, #202b58, #52235d);
+}
+
+.score-card>span {
+    color: #dbe0f4;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.score-card .meter {
+    margin: 8px 0;
+}
+
+.score-card strong {
+    color: white;
+    font-size: 12px;
 }
 
 .branch {
@@ -445,272 +582,346 @@ button {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    text-align: left;
-    border: 0;
-    border-radius: 10px;
-    padding: 13px;
     margin: 8px 0;
-    font-weight: bold
+    padding: 14px;
+    color: var(--white);
+    font-weight: 700;
+    text-align: left;
+    border: 1px solid transparent;
+    border-radius: 11px;
+    transition: transform 0.18s ease;
+}
+
+.branch:hover {
+    transform: translateX(4px);
 }
 
 .branch.calm {
-    background: #ddf8e9
+    border-color: rgba(105, 229, 164, 0.24);
+    background: rgba(105, 229, 164, 0.14);
 }
 
 .branch.maybe {
-    background: #fff1c7
+    border-color: rgba(255, 213, 93, 0.24);
+    background: rgba(255, 213, 93, 0.14);
 }
 
 .branch.danger {
-    background: #ffdfe1
+    border-color: rgba(255, 122, 138, 0.24);
+    background: rgba(255, 122, 138, 0.15);
 }
 
+
+/* ---------- EVIDENCE ---------- */
+
 .evidence-page {
-    text-align: left
+    color: var(--white);
+    text-align: left;
 }
 
 .evidence-page h1 {
-    margin-bottom: 0
+    text-align: left;
 }
 
 .evidence-input {
     display: flex;
-    gap: 7px
+    gap: 8px;
 }
 
 .evidence-input input {
     flex: 1;
-    border: 1px solid #cfd3db;
-    border-radius: 7px;
-    padding: 12px
+    padding: 12px;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .evidence-input button {
-    border: 0;
-    background: #152337;
-    color: white;
-    border-radius: 7px;
+    width: 44px;
+    color: var(--white);
     font-size: 24px;
-    width: 42px
+    border: 0;
+    border-radius: 9px;
+    background: var(--pink-dark);
 }
 
 .evidence-list {
-    margin: 18px 0
+    margin: 18px 0;
 }
 
 .evidence-list>div {
-    background: #fff;
-    border: 1px solid #e4e4e4;
     padding: 12px;
-    margin: 8px 0;
-    border-radius: 8px;
-    font-size: 13px
+    color: var(--white);
+    font-size: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.evidence-list>div+div {
+    margin-top: 8px;
 }
 
 .evidence-list span {
+    margin-right: 10px;
+    color: var(--pink-soft);
     font-size: 9px;
-    font-weight: bold;
-    color: #d13773;
-    margin-right: 10px
+    font-weight: 800;
 }
 
 .evidence-list button {
     float: right;
+    color: var(--white);
     border: 0;
-    background: transparent
+    background: transparent;
 }
 
 .evidence-summary {
+    margin: 18px 0;
     padding: 17px;
-    background: #fff0f5;
-    border: 1px solid #f9c1d9;
-    border-radius: 10px;
-    margin: 16px 0
+    color: var(--white);
+    border: 1px solid rgba(255, 139, 195, 0.36);
+    border-radius: 12px;
+    background: rgba(252, 84, 160, 0.15);
 }
 
 .evidence-summary b {
-    color: #ea3851
+    color: #ff93ba;
 }
 
 .evidence-page .button {
-    width: 100%
+    width: 100%;
+}
+
+
+/* ---------- SCORE ---------- */
+
+.score-page {
+    text-align: center;
 }
 
 .big-score {
-    font-size: 60px;
+    margin: 10px;
+    color: var(--pink-soft);
+    font-size: 64px;
     font-weight: 800;
-    margin: 10px
 }
 
 .big-score span,
 .report-score span {
-    font-size: 25px
+    color: var(--white);
+    font-size: 25px;
 }
 
 .score-page .score-card {
-    background: white;
-    color: #121927;
+    color: var(--white);
     text-align: left;
-    border: 1px solid #ddd
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .cooked {
-    background: #ffe1e8;
-    border-radius: 12px;
-    color: #db3859;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px
+    margin-top: 18px;
+    padding: 17px;
+    color: #ff9cc5;
+    font-size: 21px;
+    font-weight: 800;
+    border: 1px solid rgba(255, 151, 202, 0.22);
+    border-radius: 14px;
+    background: rgba(255, 79, 151, 0.14);
 }
 
 .cooked small {
     display: block;
+    margin-top: 4px;
+    color: #e7e9f7;
     font-size: 11px;
-    color: #3c4755
+    font-weight: 500;
 }
 
 .breakdown {
     display: flex;
     justify-content: space-around;
-    margin: 24px
+    gap: 10px;
+    margin: 25px 0;
 }
 
 .breakdown b {
+    flex: 1;
+    padding: 14px 6px;
+    color: #86b6ff;
     font-size: 24px;
-    color: #dc5790
+    border-radius: 14px;
+    background: rgba(86, 143, 235, 0.17);
 }
 
 .breakdown b:nth-child(2) {
-    color: #e8a223
+    color: var(--yellow);
+    background: rgba(255, 213, 93, 0.14);
+}
+
+.breakdown b:nth-child(3) {
+    color: #ff92c3;
+    background: rgba(255, 105, 176, 0.15);
 }
 
 .breakdown small {
     display: block;
+    margin-top: 3px;
+    color: var(--white);
     font-size: 10px;
-    color: #555;
-    font-weight: 400
+    font-weight: 500;
 }
 
 .score-page blockquote {
-    background: #fff2a8;
-    padding: 12px;
+    margin: 20px 0;
+    padding: 15px;
+    color: #e9edff;
+    font-family: "Patrick Hand", cursive;
+    font-size: 18px;
     text-align: left;
-    border-radius: 7px;
-    font-size: 12px;
-    margin: 20px 0
+    border: 1px solid rgba(145, 182, 255, 0.18);
+    border-radius: 10px;
+    background: rgba(86, 143, 235, 0.13);
 }
 
+
+/* ---------- REPORT ---------- */
+
 .report {
-    max-width: 650px;
-    margin: 30px auto;
-    background: #fff7e9;
-    padding: 28px;
-    border-radius: 6px;
-    box-shadow: 0 6px 24px #0f203020
+    width: min(660px, calc(100% - 34px));
+    margin: 34px auto;
+    padding: 30px;
+    color: var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 19px;
+    background: rgba(13, 26, 52, 0.78);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(13px);
 }
 
 .report h1 {
-    font-size: 22px;
-    text-align: center
+    margin-top: 0;
+    color: var(--pink-soft);
+    font-family: "Patrick Hand", cursive;
+    font-size: 34px;
+    text-align: center;
 }
 
 .report p {
+    color: #edf0ff;
     font-size: 14px;
-    line-height: 1.5
+    line-height: 1.5;
 }
 
 .report-score {
-    font-size: 45px;
-    color: #e13a62;
-    font-weight: 800
+    color: #ff80ba;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.report hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .stats {
     display: flex;
-    gap: 12px
+    gap: 10px;
 }
 
 .stats span {
     flex: 1;
-    background: #fff;
-    padding: 10px;
-    font-size: 11px
+    padding: 11px;
+    color: #e8ecff;
+    font-size: 11px;
+    border-radius: 10px;
+    background: rgba(89, 140, 230, 0.17);
+}
+
+.stats span:nth-child(2) {
+    background: rgba(255, 213, 93, 0.14);
+}
+
+.stats span:nth-child(3) {
+    background: rgba(255, 105, 176, 0.15);
 }
 
 .stats b {
     display: block;
+    margin-top: 3px;
+    color: var(--pink-soft);
     font-size: 20px;
-    color: #e04b74
 }
 
 .verdict {
-    background: #fff0a2;
-    padding: 13px;
-    border-radius: 6px
+    padding: 14px;
+    color: #fff2ba !important;
+    border: 1px solid rgba(255, 222, 112, 0.2);
+    border-radius: 10px;
+    background: rgba(255, 210, 80, 0.12);
 }
 
-.report .button {
-    margin-top: 12px
-}
 
-@media(max-width:720px) {
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 720px) {
+    .hero nav span,
+    .app-page nav span {
+        display: none;
+    }
+    .hero-copy {
+        margin-top: 42px;
+    }
     .hero h1 {
-        font-size: 70px
+        font-size: 74px;
     }
     .brain {
-        transform: scale(.8);
-        margin: -8px
+        margin: -8px auto;
+        transform: scale(0.82);
+    }
+    .input-page,
+    .evidence-page,
+    .score-page {
+        padding: 22px 16px;
+    }
+    .modes {
+        gap: 5px;
+    }
+    .mode-card {
+        min-height: 87px;
+        font-size: 9px;
+    }
+    .mode-icon {
+        font-size: 23px;
+    }
+    .sticky-grid {
+        gap: 7px;
+        transform: scale(0.78);
     }
     .game {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr;
+        width: min(100% - 24px, 600px);
     }
     .game aside {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px
+        gap: 7px;
     }
     .game aside .score-card,
-    .game aside h3 {
-        width: 100%
-    }
+    .game aside h3,
     .game aside .button {
-        width: 100%
+        width: 100%;
     }
     .branch {
         width: calc(50% - 4px);
-        font-size: 11px
-    }
-    .app-page nav span,
-    .hero nav span {
-        display: none
-    }
-    .modes {
-        gap: 5px
-    }
-    .mode-card {
-        font-size: 9px
-    }
-    .sticky-grid {
-        transform: scale(.75);
-        margin: -35px!important
+        font-size: 11px;
     }
     .stats {
-        flex-wrap: wrap
+        flex-wrap: wrap;
     }
     .stats span {
-        min-width: 30%
+        min-width: 30%;
     }
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.nav-home {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    color: #101522;
 }
