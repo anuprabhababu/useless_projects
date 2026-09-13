@@ -40,141 +40,77 @@ def fallback_content(state, trigger):
 
     if mode == "optimist":
         thoughts = [
-            f"Maybe I'm overthinking this... there's probably a perfectly normal reason for this.",
-            f"Okay, but this could still be completely harmless. Why am I analyzing every tiny detail?",
-            f"Wait, am I turning one tiny thing into an entire story in my head?",
-            f"Let's be honest, I have absolutely no proof that anything is wrong.",
-            f"I have somehow investigated this for five stages and the evidence still says: probably nothing."
+            f"Maybe there's actually a completely normal reason for this. Why am I worrying already?",
+            f"Okay, but this could still mean absolutely nothing. People do random things all the time.",
+            f"Wait... am I seriously turning one tiny detail into a whole story?",
+            f"I need to stop and think. Do I actually have any evidence that something is wrong?",
+            f"I have somehow spent five stages investigating this and still have absolutely no proof. Maybe I should go outside."
         ]
 
     elif mode == "delulu":
         thoughts = [
-            f"Wait... okay, but what if this actually means something?",
-            f"Hold on. That tiny detail is suddenly looking VERY suspicious.",
-            f"Okay, there are officially too many coincidences for my liking.",
-            f"I need to investigate this immediately. Who else noticed this?",
-            f"This has gone way beyond a normal situation. I have constructed an entire conspiracy."
+            f"Wait... okay, that tiny detail might actually mean something.",
+            f"Hold on. Why would that happen specifically? That's a little too convenient.",
+            f"Okay, now I'm noticing a pattern... and I don't think it's a coincidence.",
+            f"I need to investigate this properly. There has to be something I'm not being told.",
+            f"Okay, this has officially become a conspiracy. I've connected everything and somehow it all makes sense."
         ]
 
     else:  # detective
         thoughts = [
             f"Wait... why did that happen? Is there something I'm missing?",
-            f"Okay, but that detail feels a little strange. Why exactly did they do that?",
-            f"Hold on... that changes things. Could there be a reason behind it?",
-            f"Now I'm noticing a pattern, and I don't know if I'm imagining it.",
-            f"Okay, I need answers. What if all these tiny details are connected?"
+            f"Okay, that detail is a little strange. Why exactly did they do that?",
+            f"Hold on... if I compare that with what happened earlier, could there be a pattern?",
+            f"Okay, I need more information. When did this happen, and what else was going on at the time?",
+            f"I have officially started investigating something that probably isn't even a problem. But now I NEED answers."
         ]
 
+    # Select thought based on current level.
     thought = thoughts[min(level - 1, 4)]
 
+    # If the player clicked "Make It Worse",
+    # keep the level-specific thought instead of replacing it
+    # with the same sentence every time.
     if trigger == "worse":
-        thought = (
-            f"Wait... what if there's MORE to this than I initially thought?"
-        )
+        if level == 2:
+            thought = thoughts[1]
+        elif level == 3:
+            thought = thoughts[2]
+        elif level == 4:
+            thought = thoughts[3]
+        elif level == 5:
+            thought = thoughts[4]
 
+    # Evidence should also produce a level-appropriate reaction.
     elif trigger == "evidence":
-        thought = (
-            f"Okay, this new piece of evidence changes the way I'm looking at this."
-        )
+        if level <= 2:
+            thought = (
+                f"Wait... this new detail might actually explain something. "
+                f"Or maybe I'm just looking for a reason to overthink it."
+            )
+        elif level == 3:
+            thought = (
+                f"Okay, that new detail is interesting. "
+                f"Does it actually connect to what I noticed before?"
+            )
+        elif level == 4:
+            thought = (
+                f"Hold on... this changes the investigation. "
+                f"If this detail is relevant, what else have I missed?"
+            )
+        else:
+            thought = (
+                f"Okay, this is getting ridiculous. "
+                f"I now have enough imaginary evidence to build an entire theory."
+            )
 
     explanation = (
-        f"The situation is: \"{situation}\". "
-        "There is still no proof that anything is actually wrong, "
-        "but that has never stopped an overthinking brain."
+        f'The situation is: "{situation}". '
+        f"At level {level}, the interpretation becomes more elaborate, "
+        "even though there may still be a completely normal explanation."
     )
 
     return thought, explanation
-    """
-    Fallback used when OpenAI is unavailable.
-
-    This is still situation-aware: the response uses the
-    user's actual situation instead of returning a generic sentence.
-    """
-
-    situation = state.situation
-    mode = state.mode
-
-    if mode == "optimist":
-        responses = [
-            (
-                f'"{situation}" is probably much less serious than it feels.',
-                "There is a perfectly normal explanation hiding somewhere. "
-                "Your brain just skipped directly to the dramatic version."
-            ),
-            (
-                f'Let us examine "{situation}" calmly.',
-                "Nothing here proves that anything is wrong. "
-                "Your brain may simply be filling in the blanks."
-            ),
-            (
-                f'The evidence around "{situation}" is surprisingly calm.',
-                "Before assuming the worst, remember that people are "
-                "usually busy, distracted, or simply being people."
-            ),
-        ]
-
-    elif mode == "delulu":
-        responses = [
-            (
-                f'"{situation}"? This is definitely suspicious.',
-                "Probably not. But if we dramatically connect enough unrelated "
-                "events, we can build a theory with absolutely no evidence."
-            ),
-            (
-                f'I have investigated "{situation}" and things are getting dramatic.',
-                "There may be a completely normal explanation, but where is "
-                "the fun in stopping there?"
-            ),
-            (
-                f'"{situation}" has entered the conspiracy department.',
-                "We currently have almost no evidence, which makes this "
-                "the perfect time to develop a completely unnecessary theory."
-            ),
-        ]
-
-    else:
-        responses = [
-            (
-                f'I am investigating: "{situation}"',
-                "There may be something behind this, or your brain may be "
-                "turning one tiny detail into a full investigation."
-            ),
-            (
-                f'"{situation}" — noted. That detail goes into the case file.',
-                "It is not proof of anything yet, but it is exactly the kind "
-                "of tiny detail an overthinking detective would notice."
-            ),
-            (
-                f'The case surrounding "{situation}" has officially begun.',
-                "We have one observation and several possible explanations. "
-                "Unfortunately, your brain wants the most interesting one."
-            ),
-        ]
-
-    # Change the fallback depending on what the player just did.
-    if trigger == "worse":
-        if mode == "delulu":
-            return (
-                f'We made "{situation}" significantly more suspicious.',
-                "Did the situation actually get worse? Probably not. "
-                "Did our imagination get worse? Absolutely."
-            )
-
-        return (
-            f'After making "{situation}" worse, we have another possibility.',
-            "There is still no proof that anything is wrong, "
-            "but we have successfully created another reason to overthink it."
-        )
-
-    if trigger == "evidence":
-        return (
-            f'New evidence has been added to the case: "{situation}".',
-            "Evidence is useful, but one small detail does not automatically "
-            "confirm the theory your brain has created."
-        )
-        index = min(state.current_level - 1, len(responses) - 1)
-        return responses[index]
-
 
 async def generate_content(state, trigger):
     """
