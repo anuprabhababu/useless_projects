@@ -925,3 +925,20 @@ sup {
         min-width: 30%;
     }
 }
+
+.leaderboard-page {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.leaderboard-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}

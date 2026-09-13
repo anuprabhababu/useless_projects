@@ -252,6 +252,9 @@ const worsen = async () => {
     setError('')
     setPage('home')
   }
+  const goLeaderboard = () => {
+  setPage('leaderboard')
+}
 
   const restart = () => {
     setGameState(null)
@@ -272,7 +275,9 @@ const worsen = async () => {
             Overthink<sup>™</sup>
           </b>
 
-          <span>Home　Leaderboard　About</span>
+         <span>
+  Home　<button onClick={goLeaderboard}>Leaderboard</button>　About
+</span>
         </nav>
 
         <div className="hero-copy">
@@ -570,6 +575,27 @@ const worsen = async () => {
   }
 
   // =========================
+  // LEADERBOARD
+  // =========================
+
+  if (page === 'leaderboard') {
+    return (
+      <PageShell
+        back={() => setPage('home')}
+        onHome={goHome}
+      >
+        <div className="leaderboard-page">
+          <img
+            src="/leaderboard.png"
+            alt="You want a leaderboard for this?"
+            className="leaderboard-image"
+          />
+        </div>
+      </PageShell>
+    )
+  }
+
+  // =========================
   // SCORE
   // =========================
 
@@ -705,7 +731,7 @@ const worsen = async () => {
 // PAGE SHELL
 // =========================
 
-function PageShell({ children, back, onHome }) {
+function PageShell({ children, back, onHome, onLeaderBoard }) {
   return (
     <main className="app-page">
       <nav>
@@ -728,11 +754,18 @@ function PageShell({ children, back, onHome }) {
             Home
           </button>
 
-          <span>Leaderboard</span>
+         <button
+  className="nav-leaderboard"
+  onClick={() => window.dispatchEvent(new Event('open-leaderboard'))}
+>
+  Leaderboard
+</button>
         </div>
       </nav>
 
       {children}
+      
     </main>
+    
   )
 }
