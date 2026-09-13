@@ -15,8 +15,8 @@ Overthinker is a fun, AI-powered game that takes ordinary situations and turns t
 
 
  Team Members
-- Team Lead: Anuprabha - MACE
-- Member 2: Adarsh- MACE
+- Team Lead: Anuprabha Babu - MACE
+- Member 2: Adarsh Prasad- MACE
   
 
 ### Project Description
