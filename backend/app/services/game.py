@@ -39,9 +39,20 @@ async def make_worse(state: GameState) -> GameState:
 
 
 async def add_evidence(state: GameState, evidence: EvidenceItem) -> GameState:
-    state.evidence.append(evidence)
-    return await set_new_thought(state, "evidence")
 
+    state.evidence.append(evidence)
+
+    thought, explanation = await generate_content(state, "evidence")
+
+    state.latest_thought = thought
+    state.latest_explanation = explanation
+    state.interpretations = interpretations()
+
+    # Update the current stage instead of creating a new stage
+    if state.stages:
+        state.stages[-1].thought = thought
+
+    return refresh_score(state)
 
 def report_for(state: GameState) -> Report:
     personalities = {
