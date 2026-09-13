@@ -76,3 +76,5 @@ export default function Game({
     </main>
   );
 }
+
+import { startGame, nextStage, worsenGame } from "../services/api";
